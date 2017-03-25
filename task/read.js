@@ -16,14 +16,16 @@ exports.category = function (url,callback) {
                 url:$me.attr('href')
             }
             var reg = /\?b=(\d+)/ig;
-            var result = reg.exec(item.url);
+            var result = reg.exec(item.url)[1];
             item.id = result;
             items.push(item);
         })
         callback(null,items);
+
     });
 }
 exports.article = function (url,cid,callback) {
+    console.log(cid);
     request({url:url,encoding:null},function (err,res,body) {
         if(err){
             return console.error(err);
@@ -43,5 +45,6 @@ exports.article = function (url,cid,callback) {
             }
         })
         callback(null,items);
+        console.log(items);
     });
 }
